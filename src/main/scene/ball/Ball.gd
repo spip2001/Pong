@@ -11,6 +11,7 @@ const BASE_SPEED = 500
 @onready var player1:CharacterBody2D = get_node(player1_node_path)
 @onready var player2:CharacterBody2D = get_node(player2_node_path)
 @onready var bouncing_player = $"BouncingPlayer"
+@onready var bounce_particle = $"BounceParticle"
 
 var speed = BASE_SPEED
 var velocity = Vector2.ZERO
@@ -50,6 +51,7 @@ func _on_body_entered(body):
 		speed *= 1.05
 		velocity = (velocity.normalized()) * speed
 		bouncing_player.play()
+		bounce_particle.emitting = true
 	elif body.is_in_group("Wall"):
 		var wall:Wall = body
 		var wall_normal = wall.normal
@@ -58,6 +60,7 @@ func _on_body_entered(body):
 		speed *= 1.05
 		velocity = (velocity.normalized()) * speed
 		bouncing_player.play()
+		bounce_particle.emitting = true
 
 func _on_area_entered(area):
 	if area is Goal:
@@ -78,3 +81,7 @@ func kick_off():
 	
 	set_direction(Vector2(dir * randf_range(0.7, 1.3), randf_range(-0.3, 0.3)))
 	set_self_rotation(2 * PI)
+
+
+func _on_bouncing_player_finished():
+	bounce_particle.emitting = false

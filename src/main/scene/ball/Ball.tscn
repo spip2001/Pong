@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://1xsm8tyc5nkt"]
+[gd_scene load_steps=6 format=3 uid="uid://1xsm8tyc5nkt"]
 
 [ext_resource type="Script" path="res://src/main/scene/ball/Ball.gd" id="1_o0buw"]
 [ext_resource type="Texture2D" uid="uid://dxbpcm72hx52b" path="res://src/main/resource/Sprites/Ball.png" id="2_h4jdr"]
 [ext_resource type="AudioStream" uid="uid://stiuyfaihhka" path="res://src/main/resource/SFX/Bouncing.wav" id="3_ma3my"]
+[ext_resource type="PackedScene" uid="uid://dc4j3hdc6avpr" path="res://src/main/scene/FX/BounceParticle.tscn" id="4_82ine"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vif7w"]
 radius = 12.0
@@ -19,5 +20,8 @@ shape = SubResource("CircleShape2D_vif7w")
 [node name="BouncingPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ma3my")
 
+[node name="BounceParticle" parent="." instance=ExtResource("4_82ine")]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="BouncingPlayer" to="." method="_on_bouncing_player_finished"]
