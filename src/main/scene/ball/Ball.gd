@@ -34,7 +34,7 @@ func _process(delta):
 
 func set_direction(dir:Vector2):
 	dir = dir.normalized()
-	if abs(dir.x) < 0.4:
+	if abs(dir.x) < 0.2:
 		dir = Vector2(
 			(1 if dir.x >= 0 else -1) * 0.707, 
 			(1 if dir.y >= 0 else -1) * 0.707) 
