@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjohf5ssvn4in"]
+
+[ext_resource type="Script" path="res://src/main/scene/Game/Game.gd" id="1_cjc8i"]
+[ext_resource type="PackedScene" uid="uid://coyiuxdpj5duv" path="res://src/main/scene/player/Player.tscn" id="1_txgxb"]
+[ext_resource type="PackedScene" uid="uid://lmq6gyryxq4o" path="res://src/main/scene/ball/Ball.tscn" id="2_7hsiy"]
+[ext_resource type="PackedScene" uid="uid://dontym8qjk140" path="res://src/main/scene/player/BotPlayer.tscn" id="3_gmrku"]
+[ext_resource type="Script" path="res://src/main/gdscript/Wall.gd" id="4_x2sw3"]
+[ext_resource type="Script" path="res://src/main/gdscript/Goal.gd" id="5_1la1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3h4we"]
+size = Vector2(1280, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oonae"]
+size = Vector2(107, 740)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_cjc8i")
+
+[node name="Table" type="ColorRect" parent="."]
+offset_left = 51.0
+offset_right = 1229.0
+offset_bottom = 720.0
+color = Color(0.0588235, 0.156863, 0.152941, 1)
+
+[node name="Lines" type="Node2D" parent="Table"]
+position = Vector2(-51, 0)
+
+[node name="Line2D" type="Line2D" parent="Table/Lines"]
+points = PackedVector2Array(50, -2, 50, 722)
+width = 4.0
+
+[node name="Line2D2" type="Line2D" parent="Table/Lines"]
+points = PackedVector2Array(640, -2, 640, 722)
+width = 4.0
+
+[node name="Line2D3" type="Line2D" parent="Table/Lines"]
+points = PackedVector2Array(1230, -2, 1230, 722)
+width = 4.0
+
+[node name="Player" parent="." instance=ExtResource("1_txgxb")]
+position = Vector2(100, 360)
+
+[node name="BotPlayer" parent="." instance=ExtResource("3_gmrku")]
+position = Vector2(1180, 360)
+ball_node_path = NodePath("../Ball")
+
+[node name="Ball" parent="." instance=ExtResource("2_7hsiy")]
+position = Vector2(640, 360)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="WallTop" type="StaticBody2D" parent="Walls" groups=["Wall"]]
+script = ExtResource("4_x2sw3")
+normal = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTop"]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_3h4we")
+
+[node name="WallBottom" type="StaticBody2D" parent="Walls" groups=["Wall"]]
+position = Vector2(0, 720)
+script = ExtResource("4_x2sw3")
+normal = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBottom"]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_3h4we")
+
+[node name="GoalPlayer1" type="Area2D" parent="."]
+position = Vector2(-5, 360)
+script = ExtResource("5_1la1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalPlayer1"]
+position = Vector2(2.5, -1)
+shape = SubResource("RectangleShape2D_oonae")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="GoalPlayer2" type="Area2D" parent="."]
+position = Vector2(1280, 360)
+script = ExtResource("5_1la1h")
+player1 = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalPlayer2"]
+position = Vector2(2.5, -1)
+shape = SubResource("RectangleShape2D_oonae")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="UI"]
+custom_minimum_size = Vector2(1280, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Label" type="Label" parent="UI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10"
+horizontal_alignment = 1
