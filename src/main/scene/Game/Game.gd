@@ -19,7 +19,6 @@ func _process(delta):
 # Calles when a goal is score
 # player : the player that goaled index (1 or 2)	
 func _on_ball_goal_scored(player:int):
-	print("GOALLLL !! for player " + str(player))
 	if player == 1 :
 		player1_score_counter += 1
 	else:
