@@ -10,6 +10,7 @@ const BASE_SPEED = 500
 
 @onready var player1:CharacterBody2D = get_node(player1_node_path)
 @onready var player2:CharacterBody2D = get_node(player2_node_path)
+@onready var bouncing_player = $"BouncingPlayer"
 
 var speed = BASE_SPEED
 var velocity = Vector2.ZERO
@@ -48,6 +49,7 @@ func _on_body_entered(body):
 		velocity = (2 * player_normal) * (v0 * -1).dot(player_normal) - (v0 * -1)
 		speed *= 1.05
 		velocity = (velocity.normalized()) * speed
+		bouncing_player.play()
 	elif body.is_in_group("Wall"):
 		var wall:Wall = body
 		var wall_normal = wall.normal
@@ -55,21 +57,24 @@ func _on_body_entered(body):
 		velocity = (2 * wall_normal) * (v0 * -1).dot(wall_normal) - (v0 * -1)
 		speed *= 1.05
 		velocity = (velocity.normalized()) * speed
+		bouncing_player.play()
 
 func _on_area_entered(area):
 	if area is Goal:
 		var goal:Goal = area
 		player1_serve = !goal.player1
 		goal_scored.emit(2 if goal.player1 else 1)
-		kick_off()
+		speed = 0
+		
+func reset_position():
+	position.x = player1.position.x + 20 if  player1_serve else player2.position.x -20
+	position.y = player1.position.y if  player1_serve else player2.position.y
 		
 func kick_off():
 	speed = BASE_SPEED
+	reset_position()
 	
-	position.x = player1.position.x + 10 if  player1_serve else player2.position.x -10
-	position.y = player1.position.y if  player1_serve else player2.position.y
-	
-	var dir = -1 if player1_serve else 1
+	var dir = 1 if player1_serve else -1
 	
 	set_direction(Vector2(dir * randf_range(0.7, 1.3), randf_range(-0.3, 0.3)))
 	set_self_rotation(2 * PI)
