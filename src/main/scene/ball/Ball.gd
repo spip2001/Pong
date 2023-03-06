@@ -1,11 +1,18 @@
 class_name Ball
 extends Node2D
 
+@export_node_path("CharacterBody2D") var player1_node_path
+@export_node_path("CharacterBody2D") var player2_node_path
+
 const BASE_SPEED = 500
+
+@onready var player1:CharacterBody2D = get_node(player1_node_path)
+@onready var player2:CharacterBody2D = get_node(player2_node_path)
 
 var speed = BASE_SPEED
 var velocity = Vector2.ZERO
 var self_rotation = 0
+var player1_serve:bool = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,17 +54,19 @@ func _on_body_entered(body):
 		speed *= 1.05
 		velocity = (velocity.normalized()) * speed
 
-
 func _on_area_entered(area):
 	if area is Goal:
-		kick_off(true)
+		var goal:Goal = area
+		player1_serve = !goal.player1
+		kick_off()
 		
-func kick_off(p1_start: bool):
+func kick_off():
 	speed = BASE_SPEED
-	position.x = get_viewport_rect().size.x / 2
-	position.y = get_viewport_rect().size.y / 2
 	
-	var dir = -1 if p1_start else 1
+	position.x = player1.position.x + 10 if  player1_serve else player2.position.x -10
+	position.y = player1.position.y if  player1_serve else player2.position.y
+	
+	var dir = -1 if player1_serve else 1
 	
 	set_direction(Vector2(dir * randf_range(0.7, 1.3), randf_range(-0.3, 0.3)))
 	set_self_rotation(2 * PI)
