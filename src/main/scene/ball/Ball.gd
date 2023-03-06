@@ -1,6 +1,8 @@
 class_name Ball
 extends Node2D
 
+signal goal_scored
+
 @export_node_path("CharacterBody2D") var player1_node_path
 @export_node_path("CharacterBody2D") var player2_node_path
 
@@ -58,6 +60,7 @@ func _on_area_entered(area):
 	if area is Goal:
 		var goal:Goal = area
 		player1_serve = !goal.player1
+		goal_scored.emit(2 if goal.player1 else 1)
 		kick_off()
 		
 func kick_off():

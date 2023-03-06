@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://src/main/gdscript/Goal.gd" id="5_1la1h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3h4we"]
-size = Vector2(1280, 20)
+size = Vector2(1280, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oonae"]
 size = Vector2(107, 740)
@@ -18,23 +18,32 @@ script = ExtResource("1_cjc8i")
 
 [node name="Table" type="ColorRect" parent="."]
 offset_left = 51.0
+offset_top = 35.0
 offset_right = 1229.0
-offset_bottom = 720.0
+offset_bottom = 685.0
 color = Color(0.0588235, 0.156863, 0.152941, 1)
 
 [node name="Lines" type="Node2D" parent="Table"]
 position = Vector2(-51, 0)
 
 [node name="Line2D" type="Line2D" parent="Table/Lines"]
-points = PackedVector2Array(50, -2, 50, 722)
+points = PackedVector2Array(50, 0, 50, 650)
 width = 4.0
 
 [node name="Line2D2" type="Line2D" parent="Table/Lines"]
-points = PackedVector2Array(640, -2, 640, 722)
+points = PackedVector2Array(640, 0, 640, 650)
 width = 4.0
 
 [node name="Line2D3" type="Line2D" parent="Table/Lines"]
-points = PackedVector2Array(1230, -2, 1230, 722)
+points = PackedVector2Array(1230, 0, 1230, 650)
+width = 4.0
+
+[node name="Line2D4" type="Line2D" parent="Table/Lines"]
+points = PackedVector2Array(48, 0, 1232, 0)
+width = 4.0
+
+[node name="Line2D5" type="Line2D" parent="Table/Lines"]
+points = PackedVector2Array(48, 650, 1232, 650)
 width = 4.0
 
 [node name="Player" parent="." instance=ExtResource("1_txgxb")]
@@ -56,7 +65,7 @@ script = ExtResource("4_x2sw3")
 normal = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTop"]
-position = Vector2(640, 0)
+position = Vector2(640, 18)
 shape = SubResource("RectangleShape2D_3h4we")
 
 [node name="WallBottom" type="StaticBody2D" parent="Walls" groups=["Wall"]]
@@ -65,7 +74,7 @@ script = ExtResource("4_x2sw3")
 normal = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBottom"]
-position = Vector2(640, 0)
+position = Vector2(640, -18)
 shape = SubResource("RectangleShape2D_3h4we")
 
 [node name="GoalPlayer1" type="Area2D" parent="."]
@@ -89,23 +98,28 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="GridContainer" type="GridContainer" parent="UI"]
-custom_minimum_size = Vector2(1280, 200)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Score" type="GridContainer" parent="UI"]
+custom_minimum_size = Vector2(120, 60)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 2
+size_flags_horizontal = 4
 columns = 2
 
-[node name="Label" type="Label" parent="UI/GridContainer"]
+[node name="Player1Score" type="Label" parent="UI/Score"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "10"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="UI/GridContainer"]
+[node name="Player2Score" type="Label" parent="UI/Score"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "10"
 horizontal_alignment = 1
+
+[connection signal="goal_scored" from="Ball" to="." method="_on_ball_goal_scored"]
