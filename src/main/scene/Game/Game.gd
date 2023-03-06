@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var ball = $'Ball'
-@onready var player1_score = $'UI/Score/Player1Score'
-@onready var player2_score = $'UI/Score/Player2Score'
+@onready var player1_score = $'UI/ScorePanel/ScoreGrid/Player1Score'
+@onready var player2_score = $'UI/ScorePanel/ScoreGrid/Player2Score'
 
 var player1_score_counter = 0
 var player2_score_counter = 0

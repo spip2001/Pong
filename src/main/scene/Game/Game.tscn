@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjohf5ssvn4in"]
+[gd_scene load_steps=12 format=3 uid="uid://cjohf5ssvn4in"]
 
 [ext_resource type="Script" path="res://src/main/scene/Game/Game.gd" id="1_cjc8i"]
 [ext_resource type="PackedScene" uid="uid://coyiuxdpj5duv" path="res://src/main/scene/player/Player.tscn" id="1_txgxb"]
@@ -6,12 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://dontym8qjk140" path="res://src/main/scene/player/BotPlayer.tscn" id="3_gmrku"]
 [ext_resource type="Script" path="res://src/main/gdscript/Wall.gd" id="4_x2sw3"]
 [ext_resource type="Script" path="res://src/main/gdscript/Goal.gd" id="5_1la1h"]
+[ext_resource type="Texture2D" uid="uid://c2ih1jb7ir4v0" path="res://src/main/resource/ScodeBoard.png" id="7_uu3n8"]
+[ext_resource type="LabelSettings" uid="uid://6lhxwbwmxxtp" path="res://src/main/resource/score_label_settings.tres" id="8_h7w7x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3h4we"]
 size = Vector2(1280, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oonae"]
 size = Vector2(107, 740)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y50iv"]
+texture = ExtResource("7_uu3n8")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_cjc8i")
@@ -98,8 +103,20 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Score" type="GridContainer" parent="UI"]
+[node name="ScorePanel" type="Panel" parent="UI"]
 custom_minimum_size = Vector2(120, 60)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_y50iv")
+
+[node name="ScoreGrid" type="GridContainer" parent="UI/ScorePanel"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -110,16 +127,18 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 columns = 2
 
-[node name="Player1Score" type="Label" parent="UI/Score"]
+[node name="Player1Score" type="Label" parent="UI/ScorePanel/ScoreGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "10"
+label_settings = ExtResource("8_h7w7x")
 horizontal_alignment = 1
 
-[node name="Player2Score" type="Label" parent="UI/Score"]
+[node name="Player2Score" type="Label" parent="UI/ScorePanel/ScoreGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "10"
+label_settings = ExtResource("8_h7w7x")
 horizontal_alignment = 1
 
 [connection signal="goal_scored" from="Ball" to="." method="_on_ball_goal_scored"]

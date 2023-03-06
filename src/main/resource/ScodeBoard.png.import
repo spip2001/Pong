@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dad6no7kxi165"
-path="res://.godot/imported/Player.png-84d22f957ef8c4208df2097352ac15ab.ctex"
+uid="uid://c2ih1jb7ir4v0"
+path="res://.godot/imported/ScodeBoard.png-5dcfae2e7da1dbf34ca6bcd59945aaff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/main/resource/Player.png"
-dest_files=["res://.godot/imported/Player.png-84d22f957ef8c4208df2097352ac15ab.ctex"]
+source_file="res://src/main/resource/ScodeBoard.png"
+dest_files=["res://.godot/imported/ScodeBoard.png-5dcfae2e7da1dbf34ca6bcd59945aaff.ctex"]
 
 [params]
 
