@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://usucrvl1t6aj"]
+[gd_scene load_steps=6 format=3 uid="uid://usucrvl1t6aj"]
 
 [ext_resource type="Script" path="res://src/main/scene/player/BotPlayer.gd" id="1_pn318"]
 [ext_resource type="Texture2D" uid="uid://dad6no7kxi165" path="res://src/main/resource/Sprites/Player.png" id="2_gm3b3"]
+[ext_resource type="Texture2D" uid="uid://e8wa568am1w1" path="res://src/main/resource/Sprites/Light.png" id="3_c3d1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1v2f"]
 size = Vector2(23, 128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b8t12"]
+polygon = PackedVector2Array(-15, -60, 15, -60, 15, 60, -15, 60)
 
 [node name="BotPlayer" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_pn318")
@@ -17,3 +21,14 @@ flip_h = true
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_x1v2f")
 debug_color = Color(0.0392157, 0.494118, 0.360784, 0.419608)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_b8t12")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(8.34465e-07, 0.5)
+scale = Vector2(0.182292, 0.524089)
+color = Color(0.87451, 0.290196, 0.745098, 1)
+energy = 3.88
+texture = ExtResource("3_c3d1r")
+texture_scale = 1.2

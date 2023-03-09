@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://1xsm8tyc5nkt"]
+[gd_scene load_steps=7 format=3 uid="uid://1xsm8tyc5nkt"]
 
 [ext_resource type="Script" path="res://src/main/scene/ball/Ball.gd" id="1_o0buw"]
 [ext_resource type="Texture2D" uid="uid://dxbpcm72hx52b" path="res://src/main/resource/Sprites/Ball.png" id="2_h4jdr"]
 [ext_resource type="AudioStream" uid="uid://stiuyfaihhka" path="res://src/main/resource/SFX/Bouncing.wav" id="3_ma3my"]
 [ext_resource type="PackedScene" uid="uid://dc4j3hdc6avpr" path="res://src/main/scene/FX/BounceParticle.tscn" id="4_82ine"]
+[ext_resource type="Texture2D" uid="uid://e8wa568am1w1" path="res://src/main/resource/Sprites/Light.png" id="5_1sqwr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vif7w"]
 radius = 12.0
@@ -21,6 +22,11 @@ shape = SubResource("CircleShape2D_vif7w")
 stream = ExtResource("3_ma3my")
 
 [node name="BounceParticle" parent="." instance=ExtResource("4_82ine")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.839216, 0.690196, 0.141176, 1)
+texture = ExtResource("5_1sqwr")
+texture_scale = 0.3
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

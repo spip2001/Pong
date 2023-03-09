@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc4j3hdc6avpr"]
+[gd_scene load_steps=3 format=3 uid="uid://dc4j3hdc6avpr"]
+
+[ext_resource type="Texture2D" uid="uid://bsjvtq2fd8bfy" path="res://src/main/resource/Sprites/Particle.png" id="1_0p3e6"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_868in"]
 lifetime_randomness = 0.25
@@ -18,3 +20,4 @@ angle_max = 60.6
 emitting = false
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_868in")
+texture = ExtResource("1_0p3e6")
