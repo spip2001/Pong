@@ -25,7 +25,7 @@ stream = ExtResource("3_ma3my")
 
 [node name="Light" type="PointLight2D" parent="."]
 color = Color(0.996078, 0.517647, 0.8, 1)
-energy = 9.5
+energy = 7.0
 texture = ExtResource("5_1sqwr")
 texture_scale = 0.3
 

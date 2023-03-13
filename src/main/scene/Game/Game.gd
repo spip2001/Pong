@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var ball:Ball = $'MainLayer/Ball'
+@onready var score_panel = $'UI/ScorePanel'
+@onready var score_timer = $'UI/ScoreTimer'
 @onready var player1_score = $'UI/ScorePanel/ScoreGrid/Player1Score'
 @onready var player2_score = $'UI/ScorePanel/ScoreGrid/Player2Score'
 @onready var goal_player = $'GoalPlayer'
@@ -32,6 +34,9 @@ func _on_ball_goal_scored(player:int):
 	ball.reset_position()
 	goal_timer.start()
 	camera.shake()
+	score_panel.visible = true
+	score_timer.start()
+	
 
 # Refresh scores displayed
 func _refresh_scores():
@@ -41,3 +46,7 @@ func _refresh_scores():
 func _on_goal_timer_timeout():
 	goal_timer.stop()
 	ball.kick_off()
+
+
+func _on_score_timer_timeout():
+	score_panel.visible = false

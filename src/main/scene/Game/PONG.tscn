@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce68eola0wjpm"]
+
+[ext_resource type="Script" path="res://src/main/scene/Game/PONG.gd" id="1_ryvgx"]
+[ext_resource type="PackedScene" uid="uid://qdan8ptnx02h" path="res://src/main/scene/UI/StartScreen.tscn" id="1_yx1di"]
+[ext_resource type="PackedScene" uid="uid://dxj38e6oi1fks" path="res://src/main/scene/Game/Game.tscn" id="2_rw4ai"]
+
+[node name="PONG" type="Node2D"]
+script = ExtResource("1_ryvgx")
+
+[node name="StartScreen" parent="." instance=ExtResource("1_yx1di")]
+
+[node name="Game" parent="." instance=ExtResource("2_rw4ai")]

@@ -55,7 +55,6 @@ func _on_body_entered(body):
 		bouncing_player.play()
 		bounce_particle.emitting = true
 		light.color = player.get_color()
-		print(light.color)
 	elif body.is_in_group("Wall"):
 		var wall:Wall = body
 		var wall_normal = wall.normal
