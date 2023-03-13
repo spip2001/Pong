@@ -23,8 +23,9 @@ stream = ExtResource("3_ma3my")
 
 [node name="BounceParticle" parent="." instance=ExtResource("4_82ine")]
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.839216, 0.690196, 0.141176, 1)
+[node name="Light" type="PointLight2D" parent="."]
+color = Color(0.996078, 0.517647, 0.8, 1)
+energy = 9.5
 texture = ExtResource("5_1sqwr")
 texture_scale = 0.3
 

@@ -12,6 +12,7 @@ const BASE_SPEED = 500
 @onready var player2:CharacterBody2D = get_node(player2_node_path)
 @onready var bouncing_player = $"BouncingPlayer"
 @onready var bounce_particle = $"BounceParticle"
+@onready var light = $"Light"
 
 var speed = BASE_SPEED
 var velocity = Vector2.ZERO
@@ -45,6 +46,7 @@ func set_self_rotation(angular_speed:float):
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
+		var player: Player = body
 		var player_normal = Vector2(randf_range(0.8, 1.2),randf_range(-0.2, 0.2)).normalized()
 		var v0 = velocity.normalized()
 		velocity = (2 * player_normal) * (v0 * -1).dot(player_normal) - (v0 * -1)
@@ -52,12 +54,13 @@ func _on_body_entered(body):
 		velocity = (velocity.normalized()) * speed
 		bouncing_player.play()
 		bounce_particle.emitting = true
+		light.color = player.get_color()
+		print(light.color)
 	elif body.is_in_group("Wall"):
 		var wall:Wall = body
 		var wall_normal = wall.normal
 		var v0 = velocity.normalized()
 		velocity = (2 * wall_normal) * (v0 * -1).dot(wall_normal) - (v0 * -1)
-		speed *= 1.05
 		velocity = (velocity.normalized()) * speed
 		bouncing_player.play()
 		bounce_particle.emitting = true

@@ -1,6 +1,9 @@
+class_name Player
 extends CharacterBody2D
 
 const SPEED = 300.0
+
+@onready var light:Light2D = $"Light"
 
 func _physics_process(delta):
 
@@ -13,3 +16,7 @@ func _physics_process(delta):
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+
+func get_color() -> Color:
+	return light.color
+	

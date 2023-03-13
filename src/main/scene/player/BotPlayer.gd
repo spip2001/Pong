@@ -1,9 +1,7 @@
-extends CharacterBody2D
+extends Player
 
 @export_node_path("Ball") var ball_node_path
 @onready var ball = get_node(ball_node_path)
-
-const SPEED = 300.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

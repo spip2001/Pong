@@ -24,7 +24,7 @@ debug_color = Color(0.0392157, 0.494118, 0.360784, 0.419608)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_ha26p")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Light" type="PointLight2D" parent="."]
 position = Vector2(8.34465e-07, 0.5)
 scale = Vector2(0.182292, 0.524089)
 color = Color(0.0666667, 0.658824, 0.72549, 1)
