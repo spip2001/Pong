@@ -7,6 +7,7 @@ signal goal_scored
 @export_node_path("CharacterBody2D") var player2_node_path
 
 const BASE_SPEED = 500
+const MAX_SPEED = 2000
 
 @onready var player1:CharacterBody2D = get_node(player1_node_path)
 @onready var player2:CharacterBody2D = get_node(player2_node_path)
@@ -43,6 +44,10 @@ func set_direction(dir:Vector2):
 	
 func set_self_rotation(angular_speed:float):
 	self_rotation = angular_speed
+	
+func _accelerate():
+	speed *= 1.05
+	speed = min(speed, MAX_SPEED)
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
@@ -50,7 +55,9 @@ func _on_body_entered(body):
 		var player_normal = Vector2(randf_range(0.8, 1.2),randf_range(-0.2, 0.2)).normalized()
 		var v0 = velocity.normalized()
 		velocity = (2 * player_normal) * (v0 * -1).dot(player_normal) - (v0 * -1)
-		speed *= 1.05
+		
+		_accelerate()
+		
 		velocity = (velocity.normalized()) * speed
 		bouncing_player.play()
 		bounce_particle.emitting = true

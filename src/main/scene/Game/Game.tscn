@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxj38e6oi1fks"]
+[gd_scene load_steps=14 format=3 uid="uid://dxj38e6oi1fks"]
 
 [ext_resource type="Script" path="res://src/main/scene/Game/Game.gd" id="1_cjc8i"]
 [ext_resource type="PackedScene" uid="uid://362bu6nb0c06" path="res://src/main/scene/player/Player.tscn" id="1_txgxb"]
 [ext_resource type="Script" path="res://src/main/scene/Game/Camera2D.gd" id="2_6g41s"]
 [ext_resource type="PackedScene" uid="uid://1xsm8tyc5nkt" path="res://src/main/scene/ball/Ball.tscn" id="2_7hsiy"]
 [ext_resource type="PackedScene" uid="uid://usucrvl1t6aj" path="res://src/main/scene/player/BotPlayer.tscn" id="3_gmrku"]
+[ext_resource type="Texture2D" uid="uid://b2f4k02ygno2j" path="res://src/main/resource/Sprites/Table.png" id="3_nkfs7"]
 [ext_resource type="Script" path="res://src/main/gdscript/Wall.gd" id="4_x2sw3"]
 [ext_resource type="Script" path="res://src/main/gdscript/Goal.gd" id="5_1la1h"]
 [ext_resource type="PackedScene" uid="uid://c2wel3xcjgegn" path="res://src/main/scene/UI/scorePanel.tscn" id="8_ycxoj"]
@@ -33,12 +34,12 @@ script = ExtResource("2_6g41s")
 wait_time = 0.5
 one_shot = true
 
-[node name="Table" type="ColorRect" parent="MainLayer"]
+[node name="Table" type="TextureRect" parent="MainLayer"]
 offset_left = 51.0
 offset_top = 35.0
 offset_right = 1229.0
 offset_bottom = 685.0
-color = Color(0.0588235, 0.156863, 0.152941, 1)
+texture = ExtResource("3_nkfs7")
 
 [node name="Lines" type="Node2D" parent="MainLayer/Table"]
 position = Vector2(-51, 0)
@@ -133,7 +134,8 @@ one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(641, 361)
-color = Color(0.901961, 0.921569, 0.913725, 1)
+color = Color(1, 0.0784314, 0.266667, 1)
+energy = 1.48
 shadow_enabled = true
 texture = ExtResource("11_s0o2o")
 texture_scale = 5.05

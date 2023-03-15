@@ -10,3 +10,5 @@ script = ExtResource("1_ryvgx")
 [node name="StartScreen" parent="." instance=ExtResource("1_yx1di")]
 
 [node name="Game" parent="." instance=ExtResource("2_rw4ai")]
+
+[connection signal="start_pressed" from="StartScreen" to="." method="_on_start_screen_start_pressed"]
